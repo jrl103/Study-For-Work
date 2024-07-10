@@ -9,7 +9,7 @@ export default function MainPage() {
   return (
     <S.MainPage>
       <button onClick={() => navigate(joseRouterPath.HOME)}>Jose</button>
-      <button onClick={() => navigate(songyiRouterPath.HOME)}>Jose</button>
+      <button onClick={() => navigate(songyiRouterPath.HOME)}>Songyi</button>
     </S.MainPage>
   );
 }

@@ -125,10 +125,11 @@
 ## 챕터 3. React-Hook-Form
 
 1. React-Hook-Form이란?
-   1. 우리가 React-Hook-Form을 사용하는 이유는?
-2. FormContext와 useFormContext
-3. 값의 재설정 (setValue & reset)
-4. 유효성 검사방법과 yup
+1. 우리가 React-Hook-Form을 사용하는 이유는?
+1. FormProvider와 useFormContext
+1. 값의 재설정 (setValue & reset)
+1. 유효성 검사방법과 yup
+1. yup문법
 
 ## 챕터 4. React-Query
 
@@ -145,3 +146,23 @@
 ## 챕터 5. Next.js
 
 1. SSR & SSG & ISR이란?
+2. Hydration과 dehydrate 과정
+3. pages/api 폴더의 이해
+4. React-Query와 Next.js의 조합
+5. next.config.js파일의 이해(각 옵션들 알아오기)
+
+### 문제
+
+1. getServerSideProps를 사용하기 적절한 상황과 getStaticProps를 사용하기 적절한 상황을 각각 작성하시오
+
+- 이에대한 페이지를 실제로 구현해보시오
+
+2. useQuery와 Hydration을 활용하여 아래 API와 getStaticProps로 카드형태의 UI를 구현하시오
+3.
+
+## 챕터 6. 현업에서 활용중인 기술들
+
+1. SEO 최적화 & sitemap
+2. 다국어 처리
+3. 보안
+4.

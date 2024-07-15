@@ -566,6 +566,119 @@ const user: Omit<User, Key> = {
    isValid: true,
 };
 ```
+
+## 8. 제네릭
+제네릭(generic)이란 데이터의 타입(data type)을 일반화한다(generalize)는 것을 의미하며 보통은 제네릭을 통해 클래스나 메소드에서 사용할 내부 데이터 타입을 지정하고, 컴파일 단계에서 type check를 수행한다.
+
+한마디로 만든 함수 or 객체 or 컴포넌트 등등에 어떠한 타입이 들어올지 모르는 경우, 다양한 타입에 대해 대응하기 위해 사용된다고 생각하면 된다.
+
+현업에서는 대표적으로 아래의 경우에서 사용된다.
+
+FormInputA라는 컴포넌트는 어떤 타입이 들어올지 모르는 React-Hook-Form 컴포넌트이다. 다만, React-Hook-Form에서 따르라고 하는 양식을 따르는 컴포넌트이다. 이런 경우, 아래와 같이 제네릭하게 컴포넌트를 구성하곤 한다.
+```typescript
+import React, { KeyboardEventHandler } from 'react';
+import styled, { css } from 'styled-components';
+import { useFormContext, Path, FieldValues } from 'react-hook-form';
+import { useHookFormMask } from 'use-mask-input';
+import FormErrorText from '@/components/hookForm/FormErrorText';
+import ToolTip from '@/components/common/ToolTip';
+
+interface IFormInputA<T> extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  name: Path<T>;
+  label?: string;
+  className?: string;
+  margin?: string;
+  required?: boolean;
+  disabledValid?: boolean;
+  maxWidth?: string;
+  height?: string;
+  disabled?: boolean;
+  mask?: string[];
+  color?: string;
+  fontSize?: string;
+  isFocusing?: boolean;
+  enterKey?: boolean;
+  readOnly?: boolean;
+  visibleError?: boolean;
+  tooltip?: React.ReactNode;
+}
+
+export default function FormInputA<T extends FieldValues>({
+  className,
+  margin,
+  isFocusing,
+  name,
+  required,
+  label,
+  disabled,
+  maxWidth,
+  height,
+  mask,
+  enterKey = false,
+  readOnly,
+  visibleError = true,
+  tooltip,
+  ...rest
+}: IFormInputA<T>) {
+  const {
+    formState: { errors },
+    register,
+    setFocus,
+    watch,
+    clearErrors,
+  } = useFormContext<T>();
+  const registerWithMask = useHookFormMask(register);
+
+  const watchValue = watch(name);
+
+  React.useEffect(() => {
+    if (watchValue && watchValue.length !== 0) clearErrors(name);
+  }, [clearErrors, name, watchValue]);
+
+  React.useEffect(() => {
+    if (isFocusing) setFocus(name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocusing]);
+
+  const handleKeyDown: KeyboardEventHandler = (event) => {
+    if (!enterKey && event.key === 'Enter') event.preventDefault();
+  };
+
+  const customName = React.useCallback(() => {
+    if (name.includes('.')) return name.replace('.', '-');
+    else return name;
+  }, [name]);
+
+  return (
+    <S.FormInputA margin={margin} className={className} maxWidth={maxWidth} height={height} disabled={disabled} readOnly={readOnly}>
+      <div className="input-container">
+        {label && (
+          <div style={{ display: 'flex', alignContent: 'center' }}>
+            <StyledLabel required={required && !disabled} htmlFor={name}>
+              {label}
+            </StyledLabel>
+            {tooltip && <ToolTip tooltip={tooltip} name={customName()} />}
+          </div>
+        )}
+
+        <input
+          id={name}
+          className="input-container__content"
+          disabled={disabled || readOnly}
+          autoComplete="off"
+          onKeyDown={handleKeyDown}
+          {...(mask ? registerWithMask(name, mask, { autoUnmask: true }) : register(name))}
+          {...rest}
+        />
+        {visibleError && <FormErrorText errors={errors} name={name} />}
+      </div>
+    </S.FormInputA>
+  );
+}
+```
+그외에 리액트 쿼리에서도 이런 제네릭한 타입을 구성하곤한다. 혹은 제네릭을 활용한 타입추론을 통해 함수의 매개변수의 타입을 유추하여 매개변수에 들어올 타입을 미리 지정하곤한다,
+
+
 ## 9. 여담
 타입스크립트는 집합론적으로 접근하면 좋다고합니다.
 1. never: 공집합

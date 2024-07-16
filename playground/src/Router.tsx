@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import joseRouterPath from '@/jose/constants/routerPath';
-import SongyiHome from './songyi/pages';
+import SongyiHome from './songyi';
 import JoseHome from './jose/pages';
 import songyiRouterPath from '@/songyi/constants/routerPath';
 import MainPage from './main';

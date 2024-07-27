@@ -5,7 +5,7 @@ import Form from './hookform';
 import { SubmitHandler } from 'react-hook-form';
 import { flexCenter } from '@/common/styles/Common';
 
-export interface Agreement {
+interface Agreement {
   agreement: 'Y' | 'N';
 }
 

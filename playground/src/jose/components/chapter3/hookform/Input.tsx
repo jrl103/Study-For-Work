@@ -16,7 +16,7 @@ export default function Input<T extends FieldValues>({ name, label, ...rest }: P
   return (
     <S.Input>
       <span className="input__label">{label}</span>
-      <input {...rest} {...register(name)} type="text" />
+      <input {...rest} {...register(name)} />
       <ErrorText name={name} errors={errors} />
     </S.Input>
   );

@@ -9,7 +9,7 @@ const REQUIRED_INPUT_VALID_TEXT = '필수입력';
 const POSITIVE_TEXT = '양수값을 입력해주세요';
 const MAX_TEXT = '999이하로 입력해주세요';
 const MIN_TEXT = '1이상 입력해주세요';
-const PASSWORD_TEXT = '영 대소문자,특수문자,숫자를 포함한 8자이상';
+const PASSWORD_TEXT = '영 대소문자, 특수문자, 숫자를 포함한 8자이상';
 const MIN_AGE_LIMIT = (more: number) => `${more}세 이상만 가입가능합니다.`;
 const PHONE_NUMBER_TEXT = '10자에서 15자이상의 숫자로만 구성해주세요.';
 const NUMBER_VALID_TEXT = '숫자만 입력해주세요';

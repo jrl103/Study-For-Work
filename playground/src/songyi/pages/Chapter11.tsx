@@ -4,8 +4,11 @@ import queryKeys from '../constants/querykeys';
 import useBasicQuery from '../hooks/useBasicQuery';
 import { ICardDetailResponse } from '../types/API';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useNavigate } from 'react-router-dom';
+import routerPath from '../constants/routerPath';
 
 export default function Chapter11() {
+  const navigate = useNavigate();
   const request = {
     queryKey: [queryKeys.cardDetailList],
     requestAPI: getCardDetailPage,
@@ -21,8 +24,8 @@ export default function Chapter11() {
           {isError && <div>데이터 받아오는 중 에러 발생 !</div>}
           {isSuccess && data && (
             <S.CardTable>
-              {data.data.map((item: any, index: number) => (
-                <div className="card-item" key={index}>
+              {data.data.map((item: any) => (
+                <div className="card-item" key={item.id} onClick={() => navigate(`${routerPath.CHAPTER_11_1}/${item.id}`)}>
                   {item.title}
                 </div>
               ))}

@@ -5,8 +5,11 @@ import { IInfinityDetailResponse, IMovie } from '../types/API';
 import { ErrorBoundary } from 'react-error-boundary';
 import useBasicInfiniteQuery from '../hooks/useInfinityScroll';
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import routerPath from '../constants/routerPath';
 
 export default function Chapter12() {
+  const navigate = useNavigate();
   const request = {
     queryKey: [queryKeys.infinityDetailList],
     requestAPI: getInfinityDetailPage,
@@ -59,7 +62,7 @@ export default function Chapter12() {
                   {pageItem.data.data.movies?.map((movieItem: IMovie, movieIndex: number) => {
                     if (pageIndex === data.pages.length - 1 && movieIndex === pageItem.data.data.movies.length - 1) {
                       return (
-                        <div className="movies-item">
+                        <div className="movies-item" onClick={() => navigate(`${routerPath.CHAPTER_12_1}/${movieItem.id}`)}>
                           <li ref={lastTodoElementRef} key={movieItem.id}>
                             {movieItem.title} {movieItem.year}
                           </li>
@@ -70,7 +73,7 @@ export default function Chapter12() {
                       );
                     } else {
                       return (
-                        <div className="movies-item">
+                        <div className="movies-item" onClick={() => navigate(`${routerPath.CHAPTER_12_1}/${movieItem.id}`)}>
                           <li key={movieItem.id}>
                             {movieItem.title} {movieItem.year}
                           </li>

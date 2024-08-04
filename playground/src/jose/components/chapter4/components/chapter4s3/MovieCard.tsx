@@ -1,13 +1,16 @@
 import styled from 'styled-components';
-import { Movie } from '../../types/movie';
+import { Movie } from '@/jose/components/chapter4/types/movie';
+import { useNavigate } from 'react-router-dom';
+import routerPath from '@/jose/constants/routerPath';
 
 interface Props {
   element: Movie;
 }
 
 export default function MovieCard({ element }: Props) {
+  const navigate = useNavigate();
   return (
-    <S.MovieCard>
+    <S.MovieCard onClick={() => navigate(`${routerPath.CHAPTER_4_3}/${element.id}`)}>
       <p className="movie-card__title">{element.title}</p>
       <img className="movie-card__thumbnail-image" src={element.medium_cover_image} />
       <p className="movie-card__year">{element.year}</p>

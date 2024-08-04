@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useMovieListInfiniteQuery } from './hooks/queries/useMovieListInfiniteQuery';
-import MovieCard from './components/chapter4s2/MovieCard';
+import MovieCard from './components/chapter4s3/MovieCard';
 import useInfiniteScrollHandler from './hooks/useInfiniteScrollHandler';
 import Loading from './components/common/Loading';
 

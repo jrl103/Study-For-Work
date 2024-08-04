@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import usePostDetailQuery from '../../hooks/queries/usePostDetailQuery';
-import useIdGetter from '../../hooks/useIdGetter';
-import Loading from '../common/Loading';
+import usePostDetailQuery from '@/jose/components/chapter4/hooks/queries/usePostDetailQuery';
+import useIdGetter from '@/jose/components/chapter4/hooks/useIdGetter';
+import Loading from '@/jose/components/chapter4/components/common/Loading';
 import { flexCenter } from '@/common/styles/Common';
 
 export default function DetailPostPage() {

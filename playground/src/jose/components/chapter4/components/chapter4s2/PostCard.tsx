@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PostItem } from '../../types/post';
+import { PostItem } from '@/jose/components/chapter4/types/post';
 import { useNavigate } from 'react-router-dom';
 import routerPath from '@/jose/constants/routerPath';
 

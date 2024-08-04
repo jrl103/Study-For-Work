@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import usePostListQuery from './hooks/queries/usePostListQuery';
-import PostCard from './components/chapter4s2/PostCard';
-import Loading from './components/common/Loading';
+import usePostListQuery from '@/jose/components/chapter4/hooks/queries/usePostListQuery';
+import PostCard from '@/jose/components/chapter4/components/chapter4s2/PostCard';
+import Loading from '@/jose/components/chapter4/components/common/Loading';
 import React from 'react';
 
 export default function Chapter4s2() {

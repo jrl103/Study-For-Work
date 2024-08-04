@@ -76,18 +76,68 @@ useInfinityQuery 역시 React Query에서 제공하는 GET방식의 데이터를
 - isSuccess: 데이터 패칭이 성공했을 경우 true.
 - isIdle: 이 쿼리는 현재 비활성화됐으며 사용할 수 없을 때 true
 # 3. 리액트 쿼리의 캐싱을 이해하기
-리액트 쿼리는 서버 상태 관리를 위한 라이브러리입니다. 이는 서버에서 데이터를 페칭하고, 클라이언트 측에서 데이터를 캐싱하며, 데이터 상태를 자동으로 동기화합니다.
+리액트 쿼리는 서버 상태 관리를 위한 라이브러리입니다. 이는 서버에서 데이터를 페칭하고, 클라이언트 측에서 데이터를 캐싱하며, 데이터 상태를 자동으로 동기화한다.
 
-리액트 쿼리를 사용하면, 데이터를 요청하는 컴포넌트가 많더라도 각 컴포넌트에서 데이터를 별도로 관리할 필요 없이, 중앙에서 효율적으로 데이터를 관리할 수 있습니다.
+리액트 쿼리를 사용하면, 데이터를 요청하는 컴포넌트가 많더라도 각 컴포넌트에서 데이터를 별도로 관리할 필요 없이, 중앙에서 효율적으로 데이터를 관리할 수 있다.
 
-왜냐하면 리액트 쿼리는 데이터 캐싱과 동기화를 자동으로 처리해주기 때문입니다.
+왜냐하면 리액트 쿼리는 데이터 캐싱과 동기화를 자동으로 처리해주기 때문이다.
 
-또한, 리액트 쿼리는 백그라운드에서 데이터를 자동으로 업데이트하고, 사용자가 최신 데이터를 볼 수 있도록 합니다.
+또한, 리액트 쿼리는 백그라운드에서 데이터를 자동으로 업데이트하고, 사용자가 최신 데이터를 볼 수 있도록 한다.
 
-이러한 기능은 애플리케이션의 성능을 향상시키고, 개발자의 작업을 간소화합니다.
+이러한 기능은 애플리케이션의 성능을 향상시키고, 개발자의 작업을 간소화한다.
 # 3-1. staleTime과 cacheTime
 - 사전적 정의는 '탁한', '신선하지 않은'이라는 뜻이다. 가져온 데이터가 stale하다면, 이 데이터는 더 이상 신선하지 않는 것이기 때문에 업데이트가 필요하다. react-query는 쿼리가 stale 할때, 다음과 같은 상황에서 해당 쿼리를 refetch 한다.
 - cacheTime은 말 그대로 쿼리가 캐시되어있는 시간을 말한다. react-query에서 설정한 디폴트 cacheTime은 300000(5분)이다. 따라서 캐시된 쿼리는 5분 동안 사용되지 않으면(inactive 상태) 저장되는 게 불필요하다고 판단되어 가비지 컬렉터가 수거해 가서 캐시에서 사라진다.
 # 4. queryClient를 이해해보자
 - QueryClient는 단순하게 표현하자면 QueryCache와 MutationCache를 담는 그릇이다. 우리는 대부분의 경우에 직접 QueryCache에 접근하기보다, QueryClient를 통해 QueryCache와 MutationCache에 접근한다.
 - 쿼리 클라이언트를 다시 컴포넌트내에서 사용하고싶을때에는 QueryClient를 만드는게 아닌, useQueryClient를 사용해 기존에 있던 최상단 QueryClient를 접근해서 쓴다.
+> 물론 Next.js와 같은 서버사이드 프레임워크를 쓴다면 얘기가 달라진다. 그땐, 클라이언드의 QueryClient정보를 알 수 없기때문에 new QueryClient로 QueryClient를 만들어줘야한다. (대신 사용하지않을땐 clear를 통해 모든 캐시정보를 초기화시켜줘야한다. >> 메모리 누수 발생가능성이 있음)
+
+
+### 중요한 옵션들
+- queryClient.fetchQuery
+  - 데이터를 리졸브 하거나 에러를 던지는 비동기 메소드이다. (패치하거나 쿼리를 캐시할 때 사용 << 이거 중요!)
+  - 만약 result 가 필요하지 않은 채 쿼리를 패치 해야 되는거면 prefetchQuery를 사용하는게 맞음.
+  - 쿼리가 존재하고, 데이터가 invalidated 거나 오래돼서 stale이면 캐시에 있던 데이터를 리턴한다. 반면 최신 데이터를 패치하려고 시도한다.
+- queryClient.fetchInfiniteQuery
+  - fetchQuery 랑 비슷한데 fetch 하고 infinite query 를 캐시할 때 사용한다.
+- queryClient.prefetchQuery
+  - fetchQuery와 동일.
+  - 다른 점은 얘는 아무것도 리턴하지 않는다.
+- queryClient.prefetchInfiniteQuery
+  - fetchInfiniteQuery와 동일.
+  - 다른 점은 얘는 아무것도 리턴하지 않는다.
+- queryClient.getQueryData && queryClient.getQueriesData && queryClient.getQueryState
+  - 이 메소드는 동기적인 함수다. 이미 캐시에 존재하는 데이터를 사용할때 쓴다.
+  - 개인적으로 처음알게된 함수인데 꽤나 유용하겠다는 생각이 들었습니다. props Drilling으로 data값을 넘겨줄게 아니라 이렇게 값을 가져오면 코드를 깔끔하게 작성할 수 있겠다 싶었네요.
+- queryClient.setQueryData && queryClient.setQueriesData && queryClient.setQueryState
+  - 동기함수이다. 쿼리의 캐시데이터를 즉시 업데이트 할때 사용한다. 해당 쿼리가 없다면 생성해준다.
+  - 특정상황에서 리액트 쿼리로 가져온 정보를 수정할때 유용하겠다 싶었어요. 이것도 꽤나 흥미로워서 써봤습니다.
+- queryClient.invalidateQueries
+  - 캐시에 있는 쿼리(들)을 무효화 하거나 refetch 할때 사용한다.
+- queryClient.refetchQueries
+  - 특정조건에서 쿼리를 리패치할때 사용
+  -   ```tsx
+          // refetch all queries:
+        await queryClient.refetchQueries();
+
+        // refetch all stale queries:
+        await queryClient.refetchQueries({ stale: true });
+
+        // refetch all active queries partially matching a query key:
+        await queryClient.refetchQueries(["posts"], { active: true });
+
+        // refetch all active queries exactly matching a query key:
+        await queryClient.refetchQueries(["posts", 1], { active: true, exact: true });
+      ```
+- queryClient.cancelQueries
+  - 캐시에서 outgoing 하는 쿼리들을 캔슬할 때 사용한다.
+- queryClient.removeQueries
+  - 캐시된 쿼리들을 삭제할때 사용한다.
+- queryClient.resetQueries
+  - 초기 스테이트로 캐시에 있는 쿼리들을 초기화 할때 사용한다.
+  - clear는 모든 구독자를 모두 제거해버리지만, resetQueries는 구독자에게 리셋을 알리고 사전 로드된 state로 리셋시킵니다.
+  - 쿼리가 initialData 가 있으면, 이걸로 리셋시킨다.
+  - 쿼리가 active 면, 리패치된다.
+- queryClient.clear
+  - 연결된 모든 캐시를 제거한다.

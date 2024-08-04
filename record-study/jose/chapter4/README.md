@@ -2,7 +2,7 @@
 React-Query는 데이터를 불러오고 캐싱하며, 서버 데이터와의 동기화 및 업데이트 하는 작업을 개발자가 쉽고 간단하게 할 수 있도록 도와주는 라이브러리이다. 즉, '비동기 로직을 쉽게 다룰수 있게 해준다' 라고 이해하면 됨.
 
 > 리액트 쿼리는 왜 써야할까?
-걍 간단하게 redux-saga나 redux-thunk같은거 써보면 알음. 전역상태관리 라이브러리를 사용할때 데이터 패칭후 이를 전역상태 데이터로 관리하는 방식이 redux-saga와 redux-thunk인데 이렇게되면 역할이 불분명해짐. 전역상태관리 라이브러리는 온전히 전역상태관리만 해야지 왜 데이터 패칭 후 캐싱하는 역할까지 수행해야하나? 이런 패러다임에서 등장한게 바로 React-Query라고 보면 좋을듯함.
+걍 간단하게 redux-saga나 redux-thunk같은거 써보면 알음. 전역상태관리 라이브러리를 사용할때 데이터 패칭후 이를 전역상태 데이터로 관리하는 방식이 redux-saga와 redux-thunk인데 이렇게되면 역할이 불분명해짐. 전역상태관리 라이브러리는 온전히 전역상태관리만 해야지 왜 데이터 패칭 후 캐싱하는 역할까지 수행해야하나? 이런 패러다임에서 등장한게 바로 React-Query라고 보면 좋을듯 함.
 
 ### 장단점 및 핵심기능
 - 데이터 캐싱 기능
@@ -16,7 +16,7 @@ React-Query는 데이터를 불러오고 캐싱하며, 서버 데이터와의 �
 ### refetch가 일어나는 조건
 - refetchOnWindowFocus: 윈도우에 포커스 된 경우
 - refetchOnMount: 마운트 될때
-- refetchOnReconnect: 재연결 될 때
+- refetchOnReconnect: 재연결 될때
 
 # 1-1. useQuery
 useQuery는 React Query에서 제공하는 GET방식의 데이터를 호출시 사용하는 함수이다.
@@ -71,12 +71,12 @@ useInfinityQuery 역시 React Query에서 제공하는 GET방식의 데이터를
 ```
 # 2. 리액트 쿼리의 통신상태정보
 - isLoading: 캐시에 저장된 데이터가 없거나, cacheTime을 지정한 시간이 지나고나서 재요청이 일어날때 true가 된다.
-- isFetching: 캐시에 저장된 데이터가 없거나, cacheTime을 지정한 시간이 지나고나서 재요청이 일어날때 & staleTime을 지정한 시간이 지나서 재요청이 일어날때
+- isFetching: 캐시에 저장된 데이터가 없거나, cacheTime을 지정한 시간이 지나고나서 재요청이 일어날때 & staleTime을 지정한 시간이 지나서 재요청이 일어날때.
 - isError: 데이터 패칭이 실패했을 경우 true. 이때 error라는 React-Query의 리턴값을 활용할 수도 있다.
 - isSuccess: 데이터 패칭이 성공했을 경우 true.
-- isIdle: 이 쿼리는 현재 비활성화됐으며 사용할 수 없을 때 true
+- isIdle: 이 쿼리는 현재 비활성화됐으며 사용할 수 없을 때 true.
 # 3. 리액트 쿼리의 캐싱을 이해하기
-리액트 쿼리는 서버 상태 관리를 위한 라이브러리입니다. 이는 서버에서 데이터를 페칭하고, 클라이언트 측에서 데이터를 캐싱하며, 데이터 상태를 자동으로 동기화한다.
+리액트 쿼리는 서버 상태 관리를 위한 라이브러리이다. 이는 서버에서 데이터를 패칭하고, 클라이언트 측에서 데이터를 캐싱하며, 데이터 상태를 자동으로 동기화한다.
 
 리액트 쿼리를 사용하면, 데이터를 요청하는 컴포넌트가 많더라도 각 컴포넌트에서 데이터를 별도로 관리할 필요 없이, 중앙에서 효율적으로 데이터를 관리할 수 있다.
 
@@ -91,7 +91,7 @@ useInfinityQuery 역시 React Query에서 제공하는 GET방식의 데이터를
 # 4. queryClient를 이해해보자
 - QueryClient는 단순하게 표현하자면 QueryCache와 MutationCache를 담는 그릇이다. 우리는 대부분의 경우에 직접 QueryCache에 접근하기보다, QueryClient를 통해 QueryCache와 MutationCache에 접근한다.
 - 쿼리 클라이언트를 다시 컴포넌트내에서 사용하고싶을때에는 QueryClient를 만드는게 아닌, useQueryClient를 사용해 기존에 있던 최상단 QueryClient를 접근해서 쓴다.
-> 물론 Next.js와 같은 서버사이드 프레임워크를 쓴다면 얘기가 달라진다. 그땐, 클라이언드의 QueryClient정보를 알 수 없기때문에 new QueryClient로 QueryClient를 만들어줘야한다. (대신 사용하지않을땐 clear를 통해 모든 캐시정보를 초기화시켜줘야한다. >> 메모리 누수 발생가능성이 있음)
+> 물론 Next.js와 같은 서버사이드 프레임워크를 쓴다면 얘기가 달라진다. 그땐, 클라이언드의 QueryClient정보를 알 수 없기때문에 new QueryClient로 QueryClient를 만들어줘야한다. (대신 사용하지 않을땐 clear를 통해 모든 캐시정보를 초기화시켜줘야한다. >> 메모리 누수 발생가능성이 있음)
 
 
 ### 중요한 옵션들

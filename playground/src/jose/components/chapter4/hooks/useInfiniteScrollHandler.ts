@@ -2,15 +2,15 @@ import React from 'react';
 
 interface Props {
   fetchNextPage: () => void;
-  isLoading: boolean;
+  hasNextPage: boolean;
 }
 
-export default function useInfiniteScrollHandler({ fetchNextPage, isLoading }: Props) {
+export default function useInfiniteScrollHandler({ fetchNextPage, hasNextPage }: Props) {
   const observeTargetRef = React.useRef<HTMLDivElement>(null);
 
   const handleObserver = (entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
-    if (target.isIntersecting && !isLoading) {
+    if (target.isIntersecting && !hasNextPage) {
       fetchNextPage();
     }
   };

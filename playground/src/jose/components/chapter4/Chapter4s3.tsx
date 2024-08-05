@@ -5,8 +5,8 @@ import useInfiniteScrollHandler from './hooks/useInfiniteScrollHandler';
 import Loading from './components/common/Loading';
 
 export default function Chapter4s3() {
-  const { data, fetchNextPage, hasNextPage, isFetching } = useMovieListInfiniteQuery();
-  const { observeTargetRef } = useInfiniteScrollHandler({ fetchNextPage, isLoading: hasNextPage });
+  const { data, fetchNextPage, hasNextPage, isFetching } = useMovieListInfiniteQuery(9);
+  const { observeTargetRef } = useInfiniteScrollHandler({ fetchNextPage, hasNextPage });
   return (
     <S.Chapter4s3>
       <div className="card-wrapper">

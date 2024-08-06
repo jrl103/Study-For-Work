@@ -7,6 +7,14 @@ import Chapter3 from './pages/Chapter3';
 import Chapter4 from './pages/Chapter4';
 import Chapter5 from './pages/Chapter5';
 import Chapter6 from './pages/Chapter6';
+import Chapter7 from './pages/Chapter7';
+import Chapter8 from './pages/Chapter8';
+import Chapter9 from './pages/Chapter9';
+import Chapter10 from './pages/Chapter10';
+import Chapter11 from './pages/Chapter11';
+import Chapter11_1 from './pages/detail/Chapter11_1';
+import Chapter12 from './pages/Chapter12';
+import Chapter12_1 from './pages/detail/Chapter12_1';
 
 export default function Router() {
   return (
@@ -18,6 +26,14 @@ export default function Router() {
       <Route path={routerPath.CHAPTER_4} element={<Chapter4 />} />
       <Route path={routerPath.CHAPTER_5} element={<Chapter5 />} />
       <Route path={routerPath.CHAPTER_6} element={<Chapter6 />} />
+      <Route path={routerPath.CHAPTER_7} element={<Chapter7 />} />
+      <Route path={routerPath.CHAPTER_8} element={<Chapter8 />} />
+      <Route path={routerPath.CHAPTER_9} element={<Chapter9 />} />
+      <Route path={routerPath.CHAPTER_10} element={<Chapter10 />} />
+      <Route path={routerPath.CHAPTER_11} element={<Chapter11 />} />
+      <Route path={`${routerPath.CHAPTER_11}/${routerPath.CHAPTER_11_1}/:id`} element={<Chapter11_1 />} />
+      <Route path={routerPath.CHAPTER_12} element={<Chapter12 />} />
+      <Route path={`${routerPath.CHAPTER_12}/${routerPath.CHAPTER_12_1}/:id`} element={<Chapter12_1 />} />
     </Routes>
   );
 }

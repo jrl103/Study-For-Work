@@ -178,7 +178,9 @@
 4. queryClient를 이해해보자
 
 ### 문제
+
 1. 아래 인프라를 직접 구축해보시오
+
 - 조건
   - Axios 라이브러리 사용
   - React-Query 라이브러리 사용
@@ -193,12 +195,14 @@
   - QueryClient를 생성하고 이 기본설정값을 관리할 수 있는 객체정보를 별도의 상수로 관리해야함.
 
 2. 위에 구축된 인프라를 기반으로 아래 요청사항을 직접 구현하시오
+
 - 3열의 카드형태로 화면이 보여야함.
 - 해당 API를 호출해야하며 클릭시 상세페이지가 보여야함.
   - https://jsonplaceholder.typicode.com/posts
 - 로딩처리 & 예외처리가 반드시 돼있어야함.
 
 3. 위에 구축된 인프라를 기반으로 아래 요청사항을 직접 구현하시오
+
 - 3열의 카드형태로 화면이 보여야함.
 - 무한 스크롤의 형태로 화면이 구현돼야함.
 - 해당 API를 호출해야하며 클릭시 상세페이지가 보여야함.
@@ -209,20 +213,41 @@
 
 ## 챕터 5. Next.js
 
-1. SSR & SSG & ISR이란?
-2. Hydration과 dehydrate 과정
-3. pages/api 폴더의 이해
-4. React-Query와 Next.js의 조합
-5. next.config.js파일의 이해(각 옵션들 알아오기)
+1. Next.js란?
+   1-1. 우리가 Next.js를 사용하는 이유는?
+2. SSR & SSG & ISR이란?
+3. Hydration과 dehydrate 과정
+4. pages/api 폴더의 이해
+5. React-Query와 Next.js의 조합
+6. Image 컴포넌트란?
+7. React Hydration Error란?
+8. next.config.js파일의 이해(중요하다고 생각되는 옵션들 알아오기)
 
 ### 문제
 
-1. getServerSideProps를 사용하기 적절한 상황과 getStaticProps를 사용하기 적절한 상황을 각각 작성하시오
+1. Next.js 프로젝트를 설치하고 아래 조건들과 더불어서 라이브러리들을 사용할 수 있는 환경을 조성하시오.
+
+#### <조건>
+
+- page 라우팅 방식이여야함.
+
+#### <환경>
+
+- styled-components를 사용할 수 있는 환경이여야함.
+- typescript를 사용할 수 있는 환경이여야함.
+- React-Query를 사용할 수 있는 환경이여야함. (단 리액트 쿼리는 tanstackQuery여야함.)
+
+2. getServerSideProps를 사용하기 적절한 상황과 getStaticProps를 사용하기 적절한 상황을 각각 작성하시오
 
 - 이에대한 페이지를 실제로 구현해보시오
 
-2. useQuery와 Hydration을 활용하여 아래 API와 getStaticProps로 카드형태의 UI를 구현하시오
-3.
+3. useInfinityQuery & queryClient & Hydration을 활용하여 아래 API와 getStaticProps로 카드형태의 UI를 구현하시오
+
+- https://yts.mx/api/v2/list_movies.json?page=<페이지 번호>&limit=9
+
+4. useQuery & queryClient & Hydration을 활용하여 아래 API와 getStaticPaths & getStaticProps로 상세페이지를 만드시오.
+
+- https://yts.mx/api/v2/movie_details.json?movie_id=<영화 id>
 
 ## 챕터 6. 현업에서 활용중인 기술들
 

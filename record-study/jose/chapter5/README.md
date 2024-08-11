@@ -139,4 +139,26 @@ const config = {
 
 단, 위와같이 loaderFile을 작성할 경우에는 이미지 리사이징을 AWS 람다등을 통해서 진행해야겠다!
 ## 7. React Hydration Error란?
+Hydration Error는 Next.js의 SSR 특성 때문에 생기는 오류이다. Next.js의 SSR 특성은 정적 HTML 파일을 먼저 서버에서 가지고 와서 브라우저에서 js파일로 다시 랜더링해주는 특성이다. 이 특성으로 인하여 사용자는 더 빠르게 화면을 볼 수 있다. Hydration error는 SSR에서 생기는 부작용인데 SSR또는 SSG에 의하여 pre-render되는 React tree와 브라우저에서 render되는 React tree가 달라서 발생하는 문제이다.
+SSR에서 render되는 것을 Hydration이라고 하기 때문에 Hydration Error라고 한다.
+
+### 보통 언제생기나?
+1. 좋아요와 같이 색상이 달라지는 컴포넌트들에서 발생함.
+2. 모바일화면 PC화면을 분기하는 과정에서 발생함.
+
+### 해결방안?
+1. 컴포넌트를 그냥 DynamicRender를 통해 CSR로 렌더링 되도록 만들어버린다.
+2. useEffect와 같이 클라이언트에서 실행되는 훅들을 활용해서 CSR로 만들어버린다.
+
+- https://nextjs.org/docs/messages/react-hydration-error
+
 ## 8. next.config.js파일의 이해(중요하다고 생각되는 옵션들 알아오기)
+- swcMinify: swc를 이용해 코드를 압축할지를 나타낸다. 기본값은 true이지만 실험적인 기능이라 걱정이 된다면 false를 설정해서 꺼도 된다. 참고로 Next.js 13 버전부터 기본값이 true로 변경됐다. 즉, 별도 설정이 없다면 swc를 활용해 코드를 압축한다.
+
+- reactStrictMode: 리액트에서 제공하는 엄격 모드를 설정할지 여부를 나타낸다. 기본값은 false이지만 true로 설정해 다가올 리액트 업데이트에 미리 대비하는 것을 추천한다.
+
+- rewrites: 요청 경로를 다른 목적지 경로로 매핑할 수 있게 해준다. Rewrites 는 URL 프록시처럼 동작하고 목적지 경로를 마스킹하여 사이트에서 위치가 변화하지 않은 것으로 보이게 한다. 반대로, Redirect 는 새로운 페이지로 이동하고 URL 의 변화를 그대로 보여준다.
+
+- redirect: Redirect 기능은 A 라는 페이지에 방문하면 자동으로 B 라는 페이지로 이동시켜주는 기능을 말한다.
+
+- images: 이미지 컴포넌트에 대한 설정 및 커스텀을 위한 옵션이다. srcset에 정의될 크기정보들과 허용할 src url정보등을 정의할 수 있다.

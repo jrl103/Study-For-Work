@@ -59,7 +59,7 @@ function ListPage() {
     <Container>
       <div className="movie-list">
         {data?.pages.map((page, index) => (
-          <React.Fragment key={'pages' + index}>
+          <div key={'pages' + index}>
             {page.data.movies.map((movie: any) => (
               <div
                 key={movie.id}
@@ -71,7 +71,7 @@ function ListPage() {
                 <p>Year: {movie.year}</p>
               </div>
             ))}
-          </React.Fragment>
+          </div>
         ))}
       </div>
       <div className="load-more">

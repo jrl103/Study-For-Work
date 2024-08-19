@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://next-project.com
+
+# Sitemaps
+Sitemap: https://next-project.com/sitemap.xml

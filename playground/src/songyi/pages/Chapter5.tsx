@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 export default function Chapter5() {
   const [time, setTime] = useState(180);
@@ -37,6 +38,7 @@ export default function Chapter5() {
   };
   return (
     <>
+      <PageMetaComponents siteName={'Chapter5'} title={'Chapter5'} siteUrl={'Chapter5'} desc={'Chapter5'} />
       <S.Chapter5>
         <S.AlignBox>
           <p>2. 리액트의 useRef를 활용해서 3분동안 흐르는 타이머를 만드시오</p>

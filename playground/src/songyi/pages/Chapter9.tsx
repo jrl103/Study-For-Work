@@ -1,5 +1,6 @@
 import { Controller, FormProvider, RegisterOptions, useForm, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 // RadioButton props type
 interface IRadioButton {
@@ -75,6 +76,7 @@ export default function Chapter9() {
   ];
   return (
     <>
+      <PageMetaComponents siteName={'Chapter9'} title={'Chapter9'} siteUrl={'Chapter9'} desc={'Chapter9'} />
       <S.Chapter9>
         <S.AlignBox>
           {/* FormProvider: 폼 상태와 메서드를 컨텍스트로 제공하여, 폼 내의 모든 하위 컴포넌트가 해당 상태와 메서드에 접근할 수 있도록 해줌 */}

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 export default function Chapter4() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -13,6 +14,7 @@ export default function Chapter4() {
   };
   return (
     <>
+      <PageMetaComponents siteName={'Chapter4'} title={'Chapter4'} siteUrl={'Chapter4'} desc={'Chapter4'} />
       <S.Chapter4>
         <S.AlignBox>
           <p>1. useState를 활용해 input태그에 입력된 값을 특정 버튼을 눌렀을때 확인할 수 있도록 만드시오</p>

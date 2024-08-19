@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 const colors = {
   white: '#ffffff',
@@ -7,7 +8,7 @@ const colors = {
   yellow: '#ffff00',
 } as const;
 
-// 특정 타입(오브젝트)의 value값만 입력 받을 수 있는 valueOf
+// 특정 타입의 value값만 입력 받을 수 있는 valueOf
 type valueOf<T> = T[keyof T];
 type ColorsType = typeof colors;
 type ColorsTypeValue = valueOf<ColorsType>;
@@ -19,7 +20,12 @@ interface ColorInterface {
 }
 
 export default function Chapter2() {
-  return <S.Chapter2>Chapter2</S.Chapter2>;
+  return (
+    <>
+      <PageMetaComponents siteName={'Chapter2'} title={'Chapter2'} siteUrl={'Chapter2'} desc={'Chapter2'} />
+      <S.Chapter2>Chapter2</S.Chapter2>;
+    </>
+  );
 }
 
 const S = {

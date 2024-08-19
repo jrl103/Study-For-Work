@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Controller, FormProvider, RegisterOptions, useForm, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 // CheckBox props type
 interface ICheckBox {
@@ -56,6 +58,7 @@ export default function Chapter8() {
   };
   return (
     <>
+      <PageMetaComponents siteName={'Chapter8'} title={'Chapter8'} siteUrl={'Chapter8'} desc={'Chapter8'} />
       <S.Chapter8>
         <S.AlignBox>
           {/* FormProvider: 폼 상태와 메서드를 컨텍스트로 제공하여, 폼 내의 모든 하위 컴포넌트가 해당 상태와 메서드에 접근할 수 있도록 해줌 */}

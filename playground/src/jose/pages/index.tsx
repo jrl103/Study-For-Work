@@ -10,7 +10,6 @@ export default function Home() {
       <button onClick={() => navigate(routerPath.CHAPTER_1)}>Chapter1</button>
       <button onClick={() => navigate(routerPath.CHAPTER_2)}>Chapter2</button>
       <button onClick={() => navigate(routerPath.CHAPTER_3)}>Chapter3</button>
-      <button onClick={() => navigate(routerPath.CHAPTER_4)}>Chapter4</button>
     </S.Home>
   );
 }

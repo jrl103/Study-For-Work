@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 interface User {
   type: 'user';
@@ -28,14 +29,10 @@ export const persons: Person[] = [
   { type: 'admin', name: 'Bruce Willis', age: 64, role: 'World saver' },
 ];
 
-// isAdmin, isUser 의 반환타입이 어떤 타입을 가지고 있는지 확실하게 명시되지 않아서 생긴 에러
-// is : 타입가드 (조건 분기)
-// isAdmin 함수가 true 를 반환할 때 person 은 Admin 타입으로 간주
 export function isAdmin(person: Person): person is Admin {
   return person.type === 'admin';
 }
 
-// isUser 함수가 true 를 반환할 때 person 은 User 타입으로 간주
 export function isUser(person: Person): person is User {
   return person.type === 'user';
 }
@@ -58,8 +55,14 @@ console.log();
 
 console.log('Users:');
 persons.filter(isUser).forEach(logPerson);
+
 export default function Chapter3() {
-  return <S.Chapter3>Chapter3</S.Chapter3>;
+  return (
+    <>
+      <PageMetaComponents siteName={'Chapter3'} title={'Chapter3'} siteUrl={'Chapter3'} desc={'Chapter3'} />
+      <S.Chapter3>Chapter3</S.Chapter3>;
+    </>
+  );
 }
 
 const S = {

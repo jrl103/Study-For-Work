@@ -1,5 +1,6 @@
 import { Controller, FieldValues, FormProvider, RegisterOptions, useForm, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 // Input props type
 interface IInput {
@@ -30,7 +31,7 @@ export const InputComponent: React.FC<IInput> = ({ name, disabled, type, rules }
       {/* name: 폼 필드의 이름을 지정 */}
       {/* control: useForm 또는 useFormContext에서 가져온 control 객체를 지정 */}
       {/* rules: 입력 필드에 적용할 검증 규칙을 정의 */}
-      {/* render: 실제 입력 필드를 렌더링하는 함수를 정의, field 객체를 인자로 받아 입력 필드의 이벤트 및 상태를 관리 */}
+      {/* render: 실제 입력 필드를 렌더링하는 함수를 정의, field 객체를 인자로 받아 입력 필드의 이벤트및 상태를 관리 */}
       <Controller
         name={name}
         control={control}
@@ -59,6 +60,7 @@ export default function Chapter7() {
   };
   return (
     <>
+      <PageMetaComponents siteName={'Chapter7'} title={'Chapter7'} siteUrl={'Chapter7'} desc={'Chapter7'} />
       <S.Chapter7>
         <S.AlignBox>
           {/* FormProvider: 폼 상태와 메서드를 컨텍스트로 제공하여, 폼 내의 모든 하위 컴포넌트가 해당 상태와 메서드에 접근할 수 있도록 해줌 */}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 interface IAnimal {
   name: string | number;
@@ -9,10 +10,14 @@ interface IAnimal {
 type TGender = 'woman' | 'man';
 
 const person: IAnimal[] = [];
-console.log('person: ', person);
 
 export default function Chapter1() {
-  return <S.Chapter1>Chapter1</S.Chapter1>;
+  return (
+    <>
+      <PageMetaComponents siteName={'Chapter1'} title={'Chapter1'} siteUrl={'Chapter1'} desc={'Chapter1'} />
+      <S.Chapter1>Chapter1</S.Chapter1>;
+    </>
+  );
 }
 
 const S = {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import PageMetaComponents from '../components/PageMetaComponent';
 
 interface IUser {
   id: number;
@@ -47,6 +48,7 @@ export default function Chapter6() {
   }, []);
   return (
     <>
+      <PageMetaComponents siteName={'Chapter6'} title={'Chapter6'} siteUrl={'Chapter6'} desc={'Chapter6'} />
       <S.Chapter6>
         <S.AlignBox>
           <p>

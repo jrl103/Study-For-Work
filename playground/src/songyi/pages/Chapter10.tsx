@@ -3,28 +3,7 @@ import { InputComponent } from './Chapter7';
 import { CheckBoxComponent } from './Chapter8';
 import { RadioButtonComponent } from './Chapter9';
 import { FormProvider, useForm } from 'react-hook-form';
-
-interface IOption {
-  value: string;
-  label: string;
-}
-
-interface IFormData {
-  name: string;
-  email: string;
-  password: string;
-  passwordCheck: string;
-  phoneNum?: string;
-  gender: 'MAN' | 'WOMAN';
-  age: number;
-  webSiteUrl?: string;
-  status: 'Y' | 'N';
-}
-
-const options: IOption[] = [
-  { value: 'MAN', label: '남자' },
-  { value: 'WOMAN', label: '여자' },
-];
+import PageMetaComponents from '../components/PageMetaComponent';
 
 // 각 폼 요소들 validation
 const FormValidation = {
@@ -53,7 +32,7 @@ const FormValidation = {
       message: '최소 8자 이상 입력해주세요',
     },
     pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&#]{8,}$/,
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       message: '하나 이상의 대문자, 소문자, 숫자 및 특수 문자를 포함해주세요',
     },
   },
@@ -64,7 +43,7 @@ const FormValidation = {
       message: '최소 8자 이상 입력해주세요',
     },
     pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&#]{8,}$/,
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       message: '하나 이상의 대문자, 소문자, 숫자 및 특수 문자를 포함해주세요',
     },
   },
@@ -112,26 +91,31 @@ const FormValidation = {
 };
 
 export default function Chapter10() {
-  const methods = useForm<IFormData>({
+  const methods = useForm({
     defaultValues: {
       name: '',
       email: '',
       password: '',
       passwordCheck: '',
       phoneNum: '',
-      gender: 'MAN',
-      age: 0,
+      gender: '',
+      age: '',
       webSiteUrl: '',
       status: 'N',
     },
   });
 
-  const onSubmit = (data: IFormData) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
+  const options = [
+    { value: 'MAN', label: '남자' },
+    { value: 'WOMAN', label: '여자' },
+  ];
 
   return (
     <>
+      <PageMetaComponents siteName={'Chapter10'} title={'Chapter10'} siteUrl={'Chapter10'} desc={'Chapter10'} />
       <S.Chapter10>
         <S.AlignBox>
           <FormProvider {...methods}>

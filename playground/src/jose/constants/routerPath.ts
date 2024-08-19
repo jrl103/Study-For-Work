@@ -13,6 +13,7 @@ const routerPath = {
   CHAPTER_4: 'chapter4',
   CHAPTER_4_2: 'chapter4-2',
   CHAPTER_4_3: 'chapter4-3',
+  CHAPTER_6: 'chapter6',
 };
 
 export default routerPath;

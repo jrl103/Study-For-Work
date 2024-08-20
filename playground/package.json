@@ -6,7 +6,7 @@
     "@craco/craco": "^7.1.0",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.9.0",
-    "@tanstack/react-query": "^5.50.1",
+    "@tanstack/react-query": "^5.51.23",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,36 +14,33 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "axios": "^1.7.3",
     "dayjs": "^1.11.11",
+    "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.0.13",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.52.1",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
-    "react-snap": "^1.23.0",
     "styled-reset": "^4.5.2",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
+  "proxy": "https://yts.mx",
   "scripts": {
     "start": "craco start",
-    "build": "craco build && react-snap",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "postbuild": "react-snap"
   },
   "reactSnap": {
-    "inlineCss": true,
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "sourceMaps": false,
-    "include": [
-      "/songyi",
-      "/songyi/chapter1",
-      "/songyi/chapter2"
-    ]
+    "include": ["/jose/chapter2/chapter2-1", "/jose/chapter2/chapter2-2"],
+    "inlineCss": true
   },
   "eslintConfig": {
     "extends": [
